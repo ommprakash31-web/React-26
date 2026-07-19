@@ -1,30 +1,49 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-const NoteForm = () => {
+const NoteForm = (addNote) => {
+  const [title, setTitle] = useState(""); // UseState defined. Or you can say defination of useState.
+  const [desc, setDesc] = useState(""); // UseState defined. Or you can say defination of useState.
 
-    const [title, setTitle] = useState("");
-    const [desc, setDesc] = useState("");
-    
-    function handleClick(e){
-        setTitle(e.target.value)
+  function handleClick(e) {
+    setTitle(e.target.value);
+  }
 
-    }
+  function handleDesc(e) {
+    setDesc(e.target.value);
+  }
 
-    function handleDesc(e){
-        setDesc(e.target.value)
-    }
+  
 
-    const handleButton = () => {
-        alert(`the values are ${title} and ${desc}`)
-    }
+  const handleButton = () => {
+    alert(`the values are ${title} and ${desc}`);
+  };
 
   return (
-    <div>
-        <input value={title} onChange={handleClick} type="text" placeholder="Enter Title" />
-        <textarea value={desc} onChange={handleDesc} type="text" placeholder="Enter Note"></textarea>
-        <button onClick={handleButton}>Add Note</button>
-    </div>
-  )
-}
+    <div className="note-form">
+      <input
+        value={title}
+        onChange={handleClick}
+        type="text"
+        placeholder="Enter Title"
+      />
+      <textarea
+        value={desc}
+        onChange={handleDesc}
+        type="text"
+        placeholder="Enter Note"
+      ></textarea>
 
-export default NoteForm
+      <button
+        onClick={() => {
+          addNote(title, desc);
+          setTitle("");
+          setDesc("");
+        }}
+      >
+        Add Note
+      </button>
+    </div>
+  );
+};
+
+export default NoteForm;
